@@ -1,6 +1,6 @@
 # SPARTAN MESSENGERS 
 
-### The repository is recently made public.
+### The repository is recently made public. 
 
 ### Features
 1. End-to-End Encryption on the client side.
@@ -8,7 +8,7 @@
 3. Rate limiting.
 
 ## The repository contains following files
-1. server.py
+1. server.py (To implement the one to one chat feature uncomment the single chat application code in server.py)
 2. client.py
 3. config.proto
 4. config.yaml
