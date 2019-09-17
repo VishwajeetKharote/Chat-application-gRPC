@@ -1,6 +1,6 @@
 # SPARTAN MESSENGERS 
 
-### The assignment is to develop a Group-Chat application using grpc.
+### The repository is recently made public.
 
 ### Features
 1. End-to-End Encryption on the client side.
