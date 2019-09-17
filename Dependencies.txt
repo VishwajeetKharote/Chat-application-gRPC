@@ -1,0 +1,27 @@
+
+
+========================SPARTAN MESSENGER=======================
+
+The documentation contains the dependencies are needed.
+
+from concurrent import futures
+from threading import Lock, Thread
+import time
+import math
+import sys
+import grpc
+import time
+import config_pb2 
+import config_pb2_grpc 
+import threading 
+import yaml
+from Crypto.Cipher import AES
+
+This assignment focuses on creating a Group Chat application using grpc.
+LRU cache is used to store the messages when the client is offline.
+The limit of LRU is stored in config.yaml
+
+
+
+
+

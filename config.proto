@@ -1,0 +1,123 @@
+syntax = "proto3";
+
+package ChatApplication;
+
+//One to one chat Application rpc methods
+service Messaging {
+
+    rpc authenticateUser(clientRequest) returns (serverResponse){}
+    rpc authenticateReceiver(clientRequest)returns (serverResponse){}
+    rpc sendMsg(clientMsg) returns (Empty){}
+    rpc recvMsg(clientRequest) returns(stream serverMsg){}
+    rpc offlineMessages(clientRequest) returns(offlineMessageList){}
+    rpc checkMsg(clientRequest) returns(serverResponse){}
+    rpc checkOfflineMsg(clientRequest) returns(serverResponse){}
+    rpc getCurrentUsers(clientRequest) returns(activeusers){}
+    rpc acknowledgeServer(clientRequest) returns(Empty){}
+    rpc appendNotification(notification) returns(Empty){}
+    rpc getNotification(clientRequest) returns(notificationResponse){}
+    rpc newChat(clientRequest) returns (Empty){}
+    rpc checkName(clientRequest) returns(rejectedList){}
+    rpc clearRejectionList(clientRequest) returns(Empty){}
+    rpc alertNotification(clientRequest) returns(serverResponse){}
+    rpc clearNotificationList(clientRequest) returns(Empty){}
+}
+
+//Group chat Application rpc methods
+service GroupMessaging {
+    rpc authenticateGrpUser(clientRequest) returns (serverGrpResponse){} 
+    rpc getGroupMembers(clientRequest) returns (getList){}
+    rpc sendMsgToGrp(groupMsg) returns (sendMsgAck){}
+    rpc checkGrpMsg(clientRequest) returns(serverResponse){}
+    rpc recvMsgFromGrp(clientRequest) returns(stream groupMsg){}
+    rpc offlineGrpMsgs(clientRequest) returns(getOfflineMsgs){}
+    rpc checkOfflineGrpMsg(clientRequest) returns(serverResponse){}
+    rpc acknowledgeServerGrp(clientRequest) returns(Empty){}
+    rpc getActiveUsers(clientRequest) returns (getList){}
+    rpc logout(clientRequest) returns(Empty){}
+}
+
+
+message Empty {}
+
+message clientRequest{
+    string name =1;
+}
+
+message serverResponse{
+    bool isAuthenticated =1;
+}
+
+message clientMsg{
+    string sender =1;
+    string receiver =2;
+    string msgSend = 3;
+    double time =4;
+    
+}
+
+message serverMsg{
+    string fromUser =1;
+    string toUser = 2;
+    string msgRecv = 3; 
+    double timeSent = 4;
+    
+}
+
+// message offlineMessageList{
+//     string offlinefromUser =1;
+//     string offlinetoUser = 2;
+//     string offlinemsgRecv = 3; 
+//     double offlinetimeSent = 4;
+// }
+
+message offlineMessageList{
+    repeated string offlinefromUser =1;
+    repeated string offlineMsg = 2;
+    //repeated string offlinemsgRecv = 3; 
+    repeated double offlinetimeSent = 4;
+}
+
+message activeusers{
+    repeated string activeUsers = 1;
+}
+
+message notification{
+    string sender = 1;
+    string receiver = 2;
+}
+
+message notificationResponse{
+    repeated string notificationFrom = 1;
+}
+
+message rejectedList{
+    repeated string names = 1;
+}
+
+message serverGrpResponse{
+    bool isAuthenticated =1;
+    string grpnum=2;
+}
+message getList{
+    repeated string names = 1;
+}
+
+message sendMsgAck{
+    bool success = 1;
+}
+
+
+message groupMsg{
+    string groupid =1;
+    string sender =2;
+    bytes msgSend = 4;
+    double time =5;
+}
+
+message getOfflineMsgs{
+   repeated string groupid =1;
+   repeated string sender =2;
+   repeated bytes msgSend = 4;
+   repeated double time =5;
+}
