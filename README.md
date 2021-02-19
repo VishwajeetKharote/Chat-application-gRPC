@@ -1,7 +1,5 @@
 # SPARTAN MESSENGERS 
 
-### The repository is recently made public. 
-
 ### Features
 1. End-to-End Encryption on the client side.
 2. LRU cache per user to store recent messages.
